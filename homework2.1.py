@@ -11,6 +11,7 @@ def triangle ():
         string_lenght += 2
     plate = string_lenght//2
 
+
     for i in range(int(number)):
         print(' '*(plate-i),'*'*(1+i*2))
 
