@@ -1,7 +1,5 @@
 with open('output.txt', 'w', encoding='utf-8') as file:
     file.write("(9))(")
-
-
 def is_balanced(s):
     stack = []
     brackets = {')': '(', ']': '[', '}': '{', '>': '<'}

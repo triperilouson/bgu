@@ -3,7 +3,6 @@ def citi():
 
         with open('cities.txt', 'r', encoding='utf-8') as file:
             cities = file.readlines()
-
         filtered_cities = []
         filtered_population = []
         for city in cities:
