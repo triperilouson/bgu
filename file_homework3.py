@@ -103,12 +103,49 @@ def sorted_lines_in_files():
 #sorted_lines_in_files()
 
 def character_replacement():
-    character = input('enter character to replace and...')
-    with open('input.txt', 'r') as file3:
-        lines = file3.read()
-    lines = lines.replace(f'{character}',';')
-    lines = lines[::-1]
-    print(lines)
-    with open('output.txt', 'w') as file2:
-        file2.write(lines)
+    def read_file(file_path):
+        """Читает строки из файла и возвращает список строк."""
+        with open(file_path, 'r', encoding='utf8') as file:
+            lines = file.readlines()
+        return [line.strip() for line in lines]
+
+    def write_file(file_path, lines):
+        """Записывает список строк в файл."""
+        with open(file_path, 'w', encoding='utf8') as file:
+            for line in lines:
+                file.write(line + '\n')
+
+    def remove_characters_and_reverse(lines, chars_to_remove):
+        """Удаляет указанные символы с правого края строки, добавляет ';' и переворачивает строку."""
+        chars_to_remove_set = set(chars_to_remove)  # Преобразуем в множество для быстрого поиска
+        processed_lines = []
+        for line in lines:
+            # Удаляем символы с правого края строки
+            while line and line[-1] in chars_to_remove_set:
+                line = line[:-1]
+            # Добавляем ';' и переворачиваем строку
+            line = line + ';'
+            reversed_line = line[::-1]
+            processed_lines.append(reversed_line)
+        return processed_lines
+
+    def main():
+        # Считываем строки из файла input.txt
+        input_file_path = 'input.txt'
+        lines = read_file(input_file_path)
+
+        # Запрашиваем у пользователя набор символов для удаления
+        chars_to_remove = input('Введите символы для удаления с правого края строки: ')
+
+        # Обрабатываем строки
+        processed_lines = remove_characters_and_reverse(lines, chars_to_remove)
+
+        # Записываем перевернутые строки в файл output.txt
+        output_file_path = 'output.txt'
+        write_file(output_file_path, processed_lines)
+
+        print(f'Обработанные строки записаны в файл {output_file_path}.')
+
+    if __name__ == "__main__":
+        main()
 #character_replacement()
