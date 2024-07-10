@@ -42,4 +42,4 @@ def evclid_reverse(a=1, b=0):
     else:
         a, b = b, a % b
         return evclid_reverse(a,b)
-print(evclid_reverse())
+#evclid_reverse(a=1, b=0)
