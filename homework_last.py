@@ -89,7 +89,6 @@ class DefFlora:
     def add_food(self):
         food = int(text_get('Count of food'))
         self.plant_food_supply += food
-
     def information(self):
         for animal in self.animals:
             text = text_get(
