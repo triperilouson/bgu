@@ -5,7 +5,6 @@ import threading
 
 pygame.init()
 
-
 def text_get(text_quetion):
     while True:
         try:
