@@ -196,8 +196,7 @@ def pygame_cycle():
                     if event.key == pygame.K_3:
                         flora.add_food()
                     if event.key == pygame.K_4:
-                        # Необходимо передать параметры для воспроизведения
-                        pass
+                        lora.reproduce(flora.animals[int(text_get('number 1 animal'))],flora.animals[int(text_get('number 2 animal'))])
                     if event.key == pygame.K_5:
                         flora.information()
 
