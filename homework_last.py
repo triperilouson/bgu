@@ -92,7 +92,7 @@ class DefFlora:
 
     def information(self):
         for animal in self.animals:
-            print(f'{text_get(f"{animal}")}')
+            print(f'{text_get(animal)}')
 
     def reproduce(self, first: Animal, second: Animal):
         if first.habitat != second.habitat or first.type_animal != second.type_animal:
