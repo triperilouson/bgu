@@ -5,6 +5,7 @@ import threading
 
 pygame.init()
 
+
 def text_get(text_quetion):
     while True:
         try:
@@ -89,10 +90,10 @@ class DefFlora:
     def add_food(self):
         food = int(text_get('Count of food'))
         self.plant_food_supply += food
+
     def information(self):
         for animal in self.animals:
-            text = text_get(
-                f'{animal.type_animal}, \n{animal.name}, \n{animal.satiety}, \n{animal.food_type}, \n{animal.lifespan},\n {animal.age}, \n{animal.gender}')
+            text = text_get(f'{animal.type_animal}, \n{animal.name}, \n{animal.satiety}, \n{animal.food_type}, \n{animal.lifespan},\n {animal.age}, \n{animal.gender}')
             print(animal)
 
     def reproduce(self, first: Animal, second: Animal):
@@ -133,8 +134,8 @@ class DefFlora:
                                 if random.random() < 0.5:
                                     animal.satiety += 53
                                     self.animals.remove(prey)
-                                else:
-                                    animal.satiety -= 16
+                            else:
+                                animal.satiety -= 16
                     if animal.satiety < 10:
                         self.animals.remove(animal)
                 time.sleep(unit_time)
@@ -197,7 +198,8 @@ def pygame_cycle():
                     if event.key == pygame.K_3:
                         flora.add_food()
                     if event.key == pygame.K_4:
-                        lora.reproduce(flora.animals[int(text_get('number 1 animal'))],flora.animals[int(text_get('number 2 animal'))])
+                        flora.reproduce(flora.animals[int(text_get('number 1 animal'))],flora.animals[int(text_get('number 2 animal'))])
+
                     if event.key == pygame.K_5:
                         flora.information()
 
