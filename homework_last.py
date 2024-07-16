@@ -115,32 +115,34 @@ class DefFlora:
 
     def death_life(self):
         while True:
-            try:
-                time_plus()
-                for animal in self.animals:
-                    if animal.age > animal.lifespan:
-                        self.plant_food_supply += animal.size
-                        self.animals.remove(animal)
-                    else:
-                        if animal.food_type == 'plants':
-                            if self.plant_food_supply > 0:
-                                self.plant_food_supply -= 1
-                                animal.satiety += 26
-                            else:
-                                animal.satiety -= 9
-                        elif animal.food_type == 'animals':
-                            prey = random.choice(self.animals)
-                            if prey.name != animal.name:
-                                if random.random() < 0.5:
-                                    animal.satiety += 53
-                                    self.animals.remove(prey)
-                            else:
-                                animal.satiety -= 16
-                    if animal.satiety < 10:
-                        self.animals.remove(animal)
-                time.sleep(unit_time)
-            except Exception:
-                print('stop')
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT or flora.animals == []:
+                    pygame.quit()
+                    done = True
+                    break
+            time_plus()
+            for animal in self.animals:
+                if animal.age > animal.lifespan:
+                    self.plant_food_supply += animal.size
+                    self.animals.remove(animal)
+                else:
+                    if animal.food_type == 'plants':
+                        if self.plant_food_supply > 0:
+                            self.plant_food_supply -= 1
+                            animal.satiety += 26
+                        else:
+                            animal.satiety -= 9
+                    elif animal.food_type == 'animals':
+                        prey = random.choice(self.animals)
+                        if prey.name != animal.name:
+                            if random.random() < 0.5:
+                                animal.satiety += 53
+                                self.animals.remove(prey)
+                        else:
+                            animal.satiety -= 16
+                if animal.satiety < 10:
+                    self.animals.remove(animal)
+            time.sleep(unit_time)
 
 flora = DefFlora()
 
@@ -189,9 +191,13 @@ def pygame_cycle():
         done = False
         while not done:
             for event in pygame.event.get():
-                if event.type == pygame.QUIT:
+                if event.type == pygame.QUIT or flora.animals == []:
                     pygame.quit()
+                    done = True
                     break
+
+
+
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_2:
                         flora.add_animal(Animal(text_get('Name'), text_get('Type'), int(text_get('Size')), text_get('Food type'), text_get('Habitat'), int(text_get('Lifespan'))))
