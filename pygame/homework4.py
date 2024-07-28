@@ -31,13 +31,23 @@ def check_balanced_in_file(input_file, output_file):
 
 input_file = 'output.txt'
 output_file = 'output.txt'
+try:
+    check_balanced_in_file(input_file, output_file)
+except Exception as e:
+    print(f'{e}')
+def two():
 
-check_balanced_in_file(input_file, output_file)
-
-def evclid_reverse(a=1, b=0):
-    if b == 0:
-        return a
-    else:
-        a, b = b, a % b
-        return evclid_reverse(a,b)
-#evclid_reverse(a=1, b=0)
+    def evclid_reverse(a=1, b=0):
+        if b == 0:
+            return a
+        else:
+            a, b = b, a % b
+            return evclid_reverse(a,b)
+    while True:
+        try:
+            a = int(input('a'))
+            b = int(input('b'))
+        except Exception as e:
+            print(f"{e}")
+    evclid_reverse(a, b)
+#two()
